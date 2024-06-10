@@ -1,0 +1,15 @@
+# Note: DO NOT use quantized model or quantization_bit when merging lora adapters
+
+# model
+model_name_or_path: /raid2/cy_backup/models/Llama-3-8B-80K-SLR/Llama-3-8B-80K-SLR-Fact-Held-240513
+# adapter_name_or_path: /raid2/cy_backup/models/Llama-3-8B-80K-SLR-Catchwords-Lora-240515
+adapter_name_or_path: /raid2/cy_backup/models/Llama-3-8B-80K-SLR/Llama-3-8B-80K-SLR-Catchwords-Lora-All-240520
+template: llama3-legal
+finetuning_type: lora
+
+# export
+# export_dir: /raid2/cy_backup/models/Llama-3-8B-80K-SLR-Catchwords-240515
+export_dir: /raid2/cy_backup/models/Llama-3-8B-80K-SLR/Llama-3-8B-80K-SLR-Catchwords-All-240520
+export_size: 2
+export_device: cpu
+export_legacy_format: false

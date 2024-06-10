@@ -1,0 +1,66 @@
+# model
+# model_name_or_path: meta-llama/Meta-Llama-3-8B-Instruct
+# model_name_or_path: /raid2/cy_backup/models/meta-llama/Meta-Llama-3-8B-Instruct
+# model_name_or_path: /raid/model/save_model_llama3/Llama-3-8B-80K-SLR-Fact-Held-240513
+model_name_or_path: /raid2/cy_backup/models/Llama-3-8B-80K-SLR/Llama-3-8B-80K-SLR-Fact-Held-240513
+
+# Resume lora training
+resume_from_checkpoint: saves/llama3-8b-it-80k/lora_all/sft_2/checkpoint-300
+adapter_name_or_path: saves/llama3-8b-it-80k/lora_all/sft_2/checkpoint-300
+ignore_data_skip: false # true
+overwrite_output_dir: false  # must disable when resuming from checkpoint
+
+# method
+stage: sft
+do_train: true
+finetuning_type: lora
+# lora_target: q_proj ,v_proj
+lora_target: all
+lora_rank: 16
+lora_alpha: 32
+
+# ddp
+ddp_timeout: 180000000
+
+# dataset
+dataset: slr-catchwords
+# dataset: identity
+template: llama3-legal
+cutoff_len: 60000
+max_samples: 8200
+val_size: 0.0
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+# output
+output_dir: saves/llama3-8b-it-80k/lora_all/sft_2
+logging_steps: 50
+save_steps: 50
+# save_steps: 10
+plot_loss: true
+# overwrite_output_dir: true  # must disable when resuming from checkpoint
+# save_total_limit: 50
+
+# train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 1
+# learning_rate: 0.0001
+learning_rate: 0.00005
+num_train_epochs: 1.0
+temperature: 0.0001
+top_p: 1.0
+max_length: 61440
+max_new_tokens: 1000
+lr_scheduler_type: cosine
+warmup_steps: 0.1
+fp16: false
+pure_bf16: true
+quantization_bit: 4            # use 4-bit QLoRA
+use_unsloth: true              # use UnslothAI's LoRA optimization for 2x faster training
+flash_attn: fa2
+# load_best_model_at_end: true  # only for eval
+
+# # eval
+# per_device_eval_batch_size: 1
+# evaluation_strategy: steps
+# eval_steps: 20

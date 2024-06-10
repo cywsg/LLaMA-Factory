@@ -1,4 +1,13 @@
 {
+  "slr-catchwords": {
+    "file_name": "/home/chongyaw_wee/project_gptx/sal_cw/data/05_model_input/slr_8K_catchwords_training_240514_2239_llama_factory_80K.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "judgment",
+      "post_prompt": "post_prompt",
+      "response": "catchwords"
+    }
+  },
   "alpaca_en": {
     "file_name": "alpaca_data_en_52k.json"
   },

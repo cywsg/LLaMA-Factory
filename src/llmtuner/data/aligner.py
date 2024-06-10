@@ -45,6 +45,10 @@ def convert_alpaca(
         if dataset_attr.query and examples[dataset_attr.query][i]:
             content.append(examples[dataset_attr.query][i])
 
+        # Add post_prompt for llama3-legal
+        if dataset_attr.post_prompt and examples[dataset_attr.post_prompt][i]:
+            content.append(examples[dataset_attr.post_prompt][i])
+
         prompt.append({"role": Role.USER.value, "content": "\n".join(content)})
 
         if dataset_attr.response and isinstance(examples[dataset_attr.response][i], list):

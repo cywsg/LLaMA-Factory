@@ -31,6 +31,7 @@ class DatasetAttr:
     """ columns for the alpaca format """
     prompt: Optional[str] = "instruction"
     query: Optional[str] = "input"
+    post_prompt: Optional[str] = "post_prompt"
     response: Optional[str] = "output"
     history: Optional[str] = None
     """ columns for the sharegpt format """
